@@ -35,7 +35,7 @@ ipport="127.0.0.1:443"
 # Create a temporary file and a trap to delete it
 #
 
-t="/tmp/install_saltconfigserver_$$"
+t="/tmp/install_saltkeymanager_$$"
 touch $t
 [[ $? -ne 0 ]] && {
     echo "Could not create temporary file. Aborting."
