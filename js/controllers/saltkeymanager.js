@@ -105,7 +105,20 @@ mgrApp.controller("saltkeymgrCtrl", function ($scope,$http,$uibModal,$log,
            + "&env_id=" + $scope.env.Id
            + '&time='+new Date().getTime().toString()
     }).success( function(data, status, headers, config) {
+
       $scope.PollForJobFinish(data.JobId,100,0,$scope.GetKeyOutputLine);
+
+      $scope.envsetting.env = $scope.env.SysName
+      $scope.envsetting.dc = $scope.env.DcSysName
+
+      if( $scope.envsetting.dc ) {
+        $scope.ApplyGrain( name, "dc", $scope.envsetting.dc );
+      }
+
+      if( $scope.envsetting.env ) {
+        $scope.ApplyGrain( name, "env", $scope.envsetting.env );
+      }
+
     }).error( function(data,status) {
       if (status>=500) {
         $scope.login.errtext = "Server error.";
